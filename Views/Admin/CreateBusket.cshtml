@@ -1,0 +1,23 @@
+@model TestMVCApp.Models.Busket
+
+@{
+    ViewData["Title"] = "Create Busket";
+}
+
+<h2>Buskets</h2>
+
+<form class="mt-4" asp-action="CreateBusket" method="post">
+    <label for="id">Customer ID</label>
+    <input asp-for="CustomerId" type="number" id="id" class="form-control mb-3">
+    
+    <label for="product">Select Products:</label>
+    <select class="form-select" id="product" multiple aria-label="multiple select example">
+      <option selected>Open this select menu</option>
+      @foreach (Product p in ViewBag.Products)
+      {
+          <option value="p">@p.Name</option>
+      }
+    </select>
+    
+    <button type="submit" class="btn btn-success mt-2">Create</button>
+</form> 

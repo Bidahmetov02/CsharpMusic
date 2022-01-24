@@ -5,8 +5,11 @@ namespace TestMVCApp.Models
 {
     public class Busket
     {
+        [Key]
         public int Id { get; set; }
-        public Customer Customer { get; set; }
-        public List<Product> Products { get; set; }
+        [Required]
+        public int CustomerId { get; set; }
+        [Required]
+        public List<Product> Products { get; set; } = new List<Product>();
     }
 }

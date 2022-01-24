@@ -1,0 +1,19 @@
+@model TestMVCApp.Models.Product
+
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<h2>Products</h2>
+
+<form class="mt-4" asp-action="CreateProduct" method="post">
+    <label for="name">Product Name</label>
+    <input asp-for="Name" type="text" id="name" class="form-control">
+    <label for="price">Price</label>
+    <input asp-for="Price" type="number" id="price" class="form-control">
+    <label for="description">Description</label>
+    <textarea asp-for="Description" type="text" id="description" placeholder="Product description here..." class="form-control"></textarea>
+    <button type="submit" class="btn btn-success mt-2">Create</button>
+</form>
+
+
