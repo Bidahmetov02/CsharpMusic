@@ -82,9 +82,27 @@ namespace TestMVCApp.Controllers
             Console.WriteLine(Busket.CustomerId);
             Console.WriteLine(Busket.Products.Count);
             Busket.Products.ForEach(p => Console.WriteLine(p.Description));*/
+            
+            
             IEnumerable<Product> objlist = _db.Products;
             
             return View(objlist);
+        }
+        
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int? id)
+        {
+            var obj = _db.Products.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            _db.Products.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

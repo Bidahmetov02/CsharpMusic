@@ -7,6 +7,7 @@ namespace TestMVCApp.Models
         [Key]
         public int Id { get; set; }
         public string Title { get; set; }
-        
+        [Display(Name = "Image")]
+        public string ImgUrl { get; set; }
     }
 }

@@ -24,7 +24,9 @@
                 <td>@p.Name</td>
                 <td>@p.Price</td>
                 <td>@p.Description</td>
-                
+                <td>
+                    <a asp-controller="Appointment" asp-action="Delete" asp-route-Id="@p.Id" class="btn btn-danger">Delete</a>
+                </td>
             </tr>
         }
         </tbody>
