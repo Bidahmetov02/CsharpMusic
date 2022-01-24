@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TestMVCApp.Data;
 using TestMVCApp.Models;
 
@@ -42,6 +43,7 @@ namespace TestMVCApp.Controllers
         // GET
         public IActionResult CreateCustomer()
         {
+            ViewBag.CustomerList = _db.Customers;
             return View();
         }
         

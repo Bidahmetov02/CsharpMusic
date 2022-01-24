@@ -20,3 +20,32 @@
     <input asp-for="CardNumber" type="number" id="cardnumber" class="form-control">
     <button type="submit" class="btn btn-success mt-2">Create</button>
 </form>
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Orders</th>
+        <th>Card Number</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (Customer Customer in ViewBag.CustomerList)
+    {
+        <tr>
+            <td>@Customer.Id</td>
+            <td>@Customer.Name</td>
+            <td>@Customer.LastName</td>
+            <td>@Customer.Address</td>
+            <td>@Customer.Email</td>
+            @foreach (var order in Customer.Orders){<td>order.Id</td>}
+            <td>@Customer.CardNumber</td>
+        </tr>
+    }
+    </tbody>
+</table>
