@@ -1,0 +1,24 @@
+@model TestMVCApp.Models.Product
+
+@{
+    ViewData["Title"] = "Delete Product";
+}
+
+<h2>Delete Product</h2>
+
+<form class="mt-4" asp-action="DeletePost" method="post">
+    <input hidden asp-for="Id">
+    
+    <label for="name">Product Name</label>
+    <input disabled asp-for="Name" type="text" id="name" class="form-control">
+    
+    <label for="price">Price</label>
+    <input disabled asp-for="Price" type="number" id="price" class="form-control">
+    
+    <label for="description">Description</label>
+    <textarea disabled asp-for="Description" type="text" id="description" placeholder="Product description here..." class="form-control"></textarea>
+    
+    <button type="submit" class="btn btn-danger mt-2 w-25">Delete</button>
+    <button asp-action="Index" class="btn btn-success mt-2 w-25">Back</button>
+    
+</form>

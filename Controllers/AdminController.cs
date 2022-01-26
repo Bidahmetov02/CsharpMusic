@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -79,5 +80,80 @@ namespace TestMVCApp.Controllers
         {
             return View();
         }
+        
+        // ------------------Category---------------------
+        // GET
+        public IActionResult CreateCategory()
+        {
+            ViewBag.CategoriesList = _db.Categories;
+            return View();
+        }
+        
+        // POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateCategoryPost(Category obj)
+        {
+            _db.Categories.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("CreateCategory");
+        }
+        
+        // GET Delete
+        public IActionResult DeleteCategory(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.Categories.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            
+            return View(obj);
+        }
+        
+        // POST Delete
+        public IActionResult DeleteCategoryPost(int? id)
+        {
+            var obj = _db.Categories.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            _db.Categories.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("CreateCategory");
+        }
+        
+        // GET Update
+        public IActionResult UpdateCategory(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.Categories.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            
+            return View(obj);
+        }
+        
+        // POST Update
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateCategoryPost(Category obj)
+        {
+            _db.Categories.Update(obj);
+            _db.SaveChanges();
+            return RedirectToAction("CreateCategory");
+        }
+        
     }
 }

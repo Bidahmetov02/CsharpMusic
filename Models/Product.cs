@@ -11,7 +11,7 @@ namespace TestMVCApp.Models
         public string Description { get; set; }
         public int CategoryId { get; set; }
         [Display(Name = "Image")]
-        public string ImgUrl { get; set; }
+        public string ImgName { get; set; }
     }
 }
 

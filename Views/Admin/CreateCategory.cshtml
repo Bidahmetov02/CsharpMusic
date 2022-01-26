@@ -1,0 +1,41 @@
+@model TestMVCApp.Models.Category
+
+@{
+    ViewData["Title"] = "Create Category";
+}
+
+<h2>Category</h2>
+
+<form class="mt-4" asp-action="CreateCategoryPost" method="post">
+    <label for="title">Category Title</label>
+    <input asp-for="Title" type="text" id="title" class="form-control">
+    <label for="image">Category Image (not implemented yet)</label>
+    <input disabled type="image" asp-for="ImgName" id="image" alt="" class="form-control">
+    
+    <button type="submit" class="btn btn-success mt-2">Create</button>
+</form>
+<br>
+<table class="table table-bordered table-striped mt-5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Image Name(not implemented yet)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Category category in ViewBag.CategoriesList)
+        {
+            <tr>
+                <td>@category.Id</td>
+                <td>@category.Title</td>
+                <td>@category.ImgName</td>
+                <td>
+                    <a asp-action="DeleteCategory" asp-route-Id="@category.Id" class="btn btn-danger">Delete</a>
+                    <a asp-action="UpdateCategory" asp-route-Id="@category.Id" class="btn btn-primary">Update</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
