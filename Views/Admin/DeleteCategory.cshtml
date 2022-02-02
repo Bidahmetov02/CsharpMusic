@@ -6,6 +6,8 @@
 
 <h2>Delete Category</h2>
 
+<p>@Model.Products.Count</p>
+
 <form class="mt-4" asp-action="DeleteCategoryPost" method="post">
     <input hidden asp-for="Id">
     
@@ -18,3 +20,4 @@
     <button asp-action="CreateCategory" class="btn btn-success mt-2 w-25">Back</button>
     
 </form>
+

@@ -9,6 +9,7 @@
 <form class="mt-4" asp-action="CreateCategoryPost" method="post">
     <label for="title">Category Title</label>
     <input asp-for="Title" type="text" id="title" class="form-control">
+    
     <label for="image">Category Image (not implemented yet)</label>
     <input disabled type="image" asp-for="ImgName" id="image" alt="" class="form-control">
     
@@ -21,6 +22,7 @@
             <th>ID</th>
             <th>Title</th>
             <th>Image Name(not implemented yet)</th>
+            <th>Products</th>
             <th></th>
         </tr>
     </thead>
@@ -31,6 +33,9 @@
                 <td>@category.Id</td>
                 <td>@category.Title</td>
                 <td>@category.ImgName</td>
+                <td>
+                    @string.Join(',' , category.Products.Select(x => x.Name))
+                </td>
                 <td>
                     <a asp-action="DeleteCategory" asp-route-Id="@category.Id" class="btn btn-danger">Delete</a>
                     <a asp-action="UpdateCategory" asp-route-Id="@category.Id" class="btn btn-primary">Update</a>

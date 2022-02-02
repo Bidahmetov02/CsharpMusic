@@ -6,14 +6,46 @@
 
 <h2>Products</h2>
 
-<form class="mt-4" asp-action="CreateProduct" method="post">
+<form class="mt-4" asp-action="CreateProductPost" method="post">
     <label for="name">Product Name</label>
     <input asp-for="Name" type="text" id="name" class="form-control">
     <label for="price">Price</label>
     <input asp-for="Price" type="number" id="price" class="form-control">
     <label for="description">Description</label>
     <textarea asp-for="Description" type="text" id="description" placeholder="Product description here..." class="form-control"></textarea>
+    <select asp-for="CategoryId" class="form-control">
+        @foreach (var category in ViewBag.CategoryList)
+        {
+            <option value="@category.Id">@category.Title</option>
+        }
+    </select>
     <button type="submit" class="btn btn-success mt-2">Create</button>
 </form>
+
+<table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (Product p in ViewBag.ProductsList)
+        {
+            <tr>
+                <td>@p.Id</td>
+                <td>@p.Name</td>
+                <td>@p.Price</td>
+                <td>@p.Description</td>
+                <td>
+                    <a asp-controller="Appointment" asp-action="Delete" asp-route-Id="@p.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
 
 

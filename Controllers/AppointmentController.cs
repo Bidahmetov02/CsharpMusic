@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TestMVCApp.Data;
 using TestMVCApp.Models;
 
@@ -68,23 +69,10 @@ namespace TestMVCApp.Controllers
             };
             _db.Buskets.Add(b2);
             _db.SaveChanges();*/
-
-            /*var product = _db.Products.Find(1);
-            var product2 = _db.Products.Find(3);
-            var Busket = _db.Buskets.Find(3);
-            /*Busket.Products.Add(product);#1#
-            Busket.Products.Add(product2);
-            Busket.Products.Add(product2);
-            Busket.Products.Add(product2);
-            
-            _db.SaveChanges();
-            Console.WriteLine(Busket.Id);
-            Console.WriteLine(Busket.CustomerId);
-            Console.WriteLine(Busket.Products.Count);
-            Busket.Products.ForEach(p => Console.WriteLine(p.Description));*/
             
             
-            IEnumerable<Product> objlist = _db.Products;
+            
+            IEnumerable<Product> objlist = _db.Products.Include(x => x.Category).ToList();
             
             return View(objlist);
         }

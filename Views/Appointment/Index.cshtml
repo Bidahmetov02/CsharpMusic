@@ -13,6 +13,7 @@
             <th>Product Name</th>
             <th>Price</th>
             <th>Description</th>
+            <th>Category</th>
             <th></th>
         </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <td>@p.Name</td>
                 <td>@p.Price</td>
                 <td>@p.Description</td>
+                <td>@p.Category.Title</td>
                 <td>
                     <a asp-controller="Appointment" asp-action="Delete" asp-route-Id="@p.Id" class="btn btn-danger">Delete</a>
                 </td>

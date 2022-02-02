@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Net.Mime;
 
 namespace TestMVCApp.Models
 {
@@ -10,6 +11,8 @@ namespace TestMVCApp.Models
         public decimal Price { get; set; }
         public string Description { get; set; }
         public int CategoryId { get; set; }
+        public Category Category { get; set; }
+        
         [Display(Name = "Image")]
         public string ImgName { get; set; }
     }

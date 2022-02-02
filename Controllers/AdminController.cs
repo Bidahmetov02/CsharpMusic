@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TestMVCApp.Data;
@@ -22,16 +23,19 @@ namespace TestMVCApp.Controllers
             return View();
         }
         
-        // GET
+        // ------------------Product---------------------
+        // GET Create
         public IActionResult CreateProduct()
         {
+            ViewBag.ProductsList = _db.Products.ToList();
+            ViewBag.CategoryList = _db.Categories.ToList();
             return View();
         }
         
-        // POST
+        // POST Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateProduct(Product obj)
+        public IActionResult CreateProductPost(Product obj)
         {
             Console.WriteLine(obj.Name);
             Console.WriteLine(obj.Price);
@@ -41,6 +45,7 @@ namespace TestMVCApp.Controllers
             return RedirectToAction("Index");
         }
         
+        // ------------------Customer---------------------
         // GET
         public IActionResult CreateCustomer()
         {
@@ -58,6 +63,7 @@ namespace TestMVCApp.Controllers
             return RedirectToAction("Index");
         }
         
+        // ------------------Busket---------------------
         // GET
         public IActionResult CreateBusket()
         {
@@ -75,6 +81,7 @@ namespace TestMVCApp.Controllers
             return RedirectToAction("Index");
         }
         
+        // ------------------Order---------------------
         // GET
         public IActionResult CreateOrder()
         {
@@ -85,7 +92,8 @@ namespace TestMVCApp.Controllers
         // GET
         public IActionResult CreateCategory()
         {
-            ViewBag.CategoriesList = _db.Categories;
+            ViewBag.CategoriesList = _db.Categories.Include(x => x.Products);
+            ViewBag.ProductsList = _db.Products;
             return View();
         }
         
@@ -94,8 +102,12 @@ namespace TestMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateCategoryPost(Category obj)
         {
+            
+            Console.WriteLine(obj.Title);
+            Console.WriteLine(obj.Products.Count);
             _db.Categories.Add(obj);
             _db.SaveChanges();
+            
             return RedirectToAction("CreateCategory");
         }
         
@@ -111,6 +123,8 @@ namespace TestMVCApp.Controllers
             {
                 return NotFound();
             }
+
+            //Console.WriteLine(obj.Title);
             
             return View(obj);
         }

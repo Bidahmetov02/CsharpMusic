@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TestMVCApp.Data;
@@ -9,9 +10,10 @@ using TestMVCApp.Data;
 namespace TestMVCApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220131154503_ProductFieldUpdated")]
+    partial class ProductFieldUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,7 +159,7 @@ namespace TestMVCApp.Migrations
                         .WithMany("Products")
                         .HasForeignKey("BusketId");
 
-                    b.HasOne("TestMVCApp.Models.Category", "Category")
+                    b.HasOne("TestMVCApp.Models.Category", null)
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -166,8 +168,6 @@ namespace TestMVCApp.Migrations
                     b.HasOne("TestMVCApp.Models.Order", null)
                         .WithMany("Products")
                         .HasForeignKey("OrderId");
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("TestMVCApp.Models.Busket", b =>
