@@ -15,3 +15,4 @@ namespace TestMVCApp.Models
         public decimal Total { get; set; }
     }
 }
+

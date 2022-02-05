@@ -45,6 +45,68 @@ namespace TestMVCApp.Controllers
             return RedirectToAction("Index");
         }
         
+        // Get Delete
+        public IActionResult ProductDelete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.Products.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            var CategoryId = obj.CategoryId;
+            ViewBag.Category = _db.Categories.Find(CategoryId).Title;
+            return View(obj);
+        }
+        
+        // Post Delete
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ProductDeletePost(int? id)
+        {
+            var obj = _db.Products.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            _db.Products.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("CreateProduct");
+        }
+        
+        // Get Update
+        public IActionResult UpdateProduct(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.Products.Find(id);
+            
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            
+            ViewBag.CategoryList = _db.Categories.ToList();
+            return View(obj);
+        }
+        
+        // Post Update
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateProductPost(Product obj)
+        {
+            _db.Products.Update(obj);
+            _db.SaveChanges();
+            return RedirectToAction("CreateProduct");
+        }
+        
         // ------------------Customer---------------------
         // GET
         public IActionResult CreateCustomer()

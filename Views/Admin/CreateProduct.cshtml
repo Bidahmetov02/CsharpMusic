@@ -13,7 +13,8 @@
     <input asp-for="Price" type="number" id="price" class="form-control">
     <label for="description">Description</label>
     <textarea asp-for="Description" type="text" id="description" placeholder="Product description here..." class="form-control"></textarea>
-    <select asp-for="CategoryId" class="form-control">
+    <label for="categorySelect">Select Category</label>
+    <select id="categorySelect" asp-for="CategoryId" class="form-control">
         @foreach (var category in ViewBag.CategoryList)
         {
             <option value="@category.Id">@category.Title</option>
@@ -22,13 +23,14 @@
     <button type="submit" class="btn btn-success mt-2">Create</button>
 </form>
 
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped mt-3">
         <thead>
         <tr>
             <th>Product ID</th>
             <th>Product Name</th>
-            <th>Price</th>
+            <th>Price ($)</th>
             <th>Description</th>
+            <th>Category</th>
             <th></th>
         </tr>
         </thead>
@@ -40,8 +42,10 @@
                 <td>@p.Name</td>
                 <td>@p.Price</td>
                 <td>@p.Description</td>
+                <td>@p.Category.Title</td>
                 <td>
-                    <a asp-controller="Appointment" asp-action="Delete" asp-route-Id="@p.Id" class="btn btn-danger">Delete</a>
+                    <a asp-action="ProductDelete" asp-route-Id="@p.Id" class="btn btn-danger">Delete</a>
+                    <a asp-action="UpdateProduct" asp-route-Id="@p.Id" class="btn btn-primary">Update</a>
                 </td>
             </tr>
         }

@@ -1,0 +1,27 @@
+@model TestMVCApp.Models.Product
+
+@{
+    ViewData["Title"] = "Update Product";
+}
+
+<h2>Product</h2>
+
+<form class="mt-4" asp-action="UpdateProductPost" method="post">
+    <input hidden asp-for="Id">
+    <label for="name">Product Name</label>
+    <input asp-for="Name" type="text" id="name" class="form-control">
+    <label for="price">Price</label>
+    <input asp-for="Price" type="number" id="price" class="form-control">
+    <label for="description">Description</label>
+    <textarea asp-for="Description" type="text" id="description" placeholder="Product description here..." class="form-control"></textarea>
+    <label for="categorySelect">Select Category</label>
+    <select id="categorySelect" asp-for="CategoryId" class="form-control">
+        @foreach (var category in ViewBag.CategoryList)
+        {
+            <option value="@category.Id">@category.Title</option>
+        }
+    </select>
+    <button type="submit" class="btn btn-success mt-2">Update</button>
+    <button asp-action="CreateProduct" class="btn btn-success mt-2 w-25">Back</button>
+</form>
+

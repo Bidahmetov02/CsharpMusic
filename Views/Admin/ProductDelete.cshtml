@@ -6,7 +6,7 @@
 
 <h2>Delete Product</h2>
 
-<form class="mt-4" asp-action="DeletePost" method="post">
+<form class="mt-4" asp-action="ProductDeletePost" method="post">
     <input hidden asp-for="Id">
     
     <label for="name">Product Name</label>
@@ -18,7 +18,11 @@
     <label for="description">Description</label>
     <textarea disabled asp-for="Description" type="text" id="description" placeholder="Product description here..." class="form-control"></textarea>
     
+    <label for="category">Category</label>
+    <input disabled value="@ViewBag.Category" type="text" id="category" class="form-control">
+    
     <button type="submit" class="btn btn-danger mt-2 w-25">Delete</button>
-    <button asp-action="Index" class="btn btn-success mt-2 w-25">Back</button>
+    <button asp-action="CreateProduct" class="btn btn-success mt-2 w-25">Back</button>
     
 </form>
+

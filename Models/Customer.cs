@@ -15,3 +15,4 @@ namespace TestMVCApp.Models
         public int CardNumber { get; set; }
     }
 }
+
