@@ -1,0 +1,26 @@
+@model TestMVCApp.Models.Customer
+
+@{
+    ViewData["Title"] = "Create Customer";
+}
+
+<h2>Customers</h2>
+
+<form class="mt-4" asp-action="DeleteCustomerPost" method="post">
+    <input asp-for="Id" hidden>
+    
+    <label for="name">First Name</label>
+    <input disabled asp-for="Name" type="text" id="name" class="form-control">
+    <label for="lastname">Last Name</label>
+    <input disabled asp-for="LastName" type="text" id="lastname" class="form-control">
+    <label for="address">Address</label>
+    <input disabled asp-for="Address" type="text" id="address" class="form-control">
+    <label for="email">Email</label>
+    <input disabled asp-for="Email" type="email" id="email" class="form-control">
+    
+    <label for="cardnumber">Card Number</label>
+    <input disabled asp-for="CardNumber" type="number" id="cardnumber" class="form-control">
+
+    <button type="submit" class="btn btn-danger mt-2 w-25">Delete</button>
+    <button asp-action="CreateCustomer" class="btn btn-primary mt-2 w-25">Back</button>
+</form>

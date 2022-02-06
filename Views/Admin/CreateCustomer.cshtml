@@ -22,7 +22,7 @@
 </form>
 
 
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped mt-4">
     <thead>
     <tr>
         <th>ID</th>
@@ -32,6 +32,7 @@
         <th>Email</th>
         <th>Orders</th>
         <th>Card Number</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -43,8 +44,12 @@
             <td>@Customer.LastName</td>
             <td>@Customer.Address</td>
             <td>@Customer.Email</td>
-            @foreach (var order in Customer.Orders){<td>order.Id</td>}
+            <td>???</td>
             <td>@Customer.CardNumber</td>
+            <td>
+                <a asp-action="DeleteCustomer" asp-route-Id="@Customer.Id" class="btn btn-danger">Delete</a>
+                <a asp-action="UpdateCustomer" asp-route-Id="@Customer.Id" class="btn btn-primary">Update</a>
+            </td>
         </tr>
     }
     </tbody>

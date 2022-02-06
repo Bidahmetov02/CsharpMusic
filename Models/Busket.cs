@@ -9,6 +9,7 @@ namespace TestMVCApp.Models
         public int Id { get; set; }
         [Required]
         public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
         [Required]
         public List<Product> Products { get; set; } = new List<Product>();
     }

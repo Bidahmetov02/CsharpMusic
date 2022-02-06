@@ -125,6 +125,66 @@ namespace TestMVCApp.Controllers
             return RedirectToAction("Index");
         }
         
+        // GET Delete
+        public IActionResult DeleteCustomer(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.Customers.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            //Console.WriteLine(obj.Title);
+            
+            return View(obj);
+        }
+        
+        // POST Delete
+        public IActionResult DeleteCustomerPost(int? id)
+        {
+            var obj = _db.Customers.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            _db.Customers.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("CreateCustomer");
+        }
+        
+        // GET Update
+        public IActionResult UpdateCustomer(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.Customers.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            
+            return View(obj);
+        }
+        
+        // POST Update
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateCustomerPost(Customer obj)
+        {
+            _db.Customers.Update(obj);
+            _db.SaveChanges();
+            return RedirectToAction("CreateCustomer");
+        }
+        
+        
+        
         // ------------------Busket---------------------
         // GET
         public IActionResult CreateBusket()
