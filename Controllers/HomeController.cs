@@ -47,6 +47,12 @@ namespace TestMVCApp.Controllers
             return View(ProductList);
         }
 
+        public IActionResult AddToBusket(int? id)
+        {
+            
+            return RedirectToAction("CategoryDetail");
+        }
+
         public IActionResult Privacy()
         {
             return View();
