@@ -7,14 +7,14 @@
 <h2>Buskets</h2>
 
 <form class="mt-4" asp-action="CreateBusket" method="post">
-    <label for="customer">Select Customer:</label>
+    @*<label for="customer">Select Customer:</label>
     <select asp-for="CustomerId" class="form-select" id="customer">
         <option selected>Open this select menu</option>
         @foreach (Customer c in ViewBag.Customers)
         {
             <option value="@c.Id">@c.Name</option>
         }
-    </select>
+    </select>*@
     <br>
     <label for="product">Select Products:</label>
     <select asp-for="ProductId" class="form-select" id="product" multiple>
@@ -32,8 +32,8 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>CustomerId</th>
-        <th>Customer Name</th>
+        @*<th>CustomerId</th>
+        <th>Customer Name</th>*@
         <th>Products</th>
         <th></th>
     </tr>
@@ -43,8 +43,8 @@
     {
         <tr>
             <td>@busket.Id</td>
-            <td>@busket.CustomerId</td>
-            <td>@busket.Customer.Name</td>
+            @*<td>@busket.CustomerId</td>
+            <td>@busket.Customer.Name</td>*@
             <td>
                 @string.Join(',' , busket.Products.Select(x => x.Name))
             </td>

@@ -189,7 +189,7 @@ namespace TestMVCApp.Controllers
         // GET
         public IActionResult CreateBusket()
         {
-            ViewBag.BusketsList = _db.Buskets.Include(x => x.Products).Include(x => x.Customer);
+            ViewBag.BusketsList = _db.Buskets.Include(x => x.Products)/*.Include(x => x.Customer)*/;
             ViewBag.Products = _db.Products;
             ViewBag.Customers = _db.Customers;
             return View();
