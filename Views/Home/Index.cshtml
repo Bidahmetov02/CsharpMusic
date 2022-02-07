@@ -1,8 +1,27 @@
-﻿@{
+﻿@model IEnumerable<TestMVCApp.Models.Category>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to Beka's New App</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to C# Music</h1>
+    <div class="container mt-3">
+        <div class="d-flex justify-content-between">
+            @foreach (Category c in Model)
+            {
+                <div class="card" style="width: 18rem;">
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">@c.Title</h5>
+                        <p class="card-text"></p>
+                        <h4>@c.Products.Count Products</h4>
+                        <a asp-action="CategoryDetail" asp-route-Id="@c.Id" class="btn btn-primary">See the Products</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
+
+

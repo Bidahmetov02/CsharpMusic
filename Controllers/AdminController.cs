@@ -42,7 +42,7 @@ namespace TestMVCApp.Controllers
             Console.WriteLine(obj.Description);
             _db.Products.Add(obj);
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("CreateProduct");
         }
         
         // Get Delete
@@ -122,7 +122,7 @@ namespace TestMVCApp.Controllers
         {
             _db.Customers.Add(obj);
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("CreateCustomer");
         }
         
         // GET Delete
@@ -189,7 +189,9 @@ namespace TestMVCApp.Controllers
         // GET
         public IActionResult CreateBusket()
         {
+            ViewBag.BusketsList = _db.Buskets.Include(x => x.Products).Include(x => x.Customer);
             ViewBag.Products = _db.Products;
+            ViewBag.Customers = _db.Customers;
             return View();
         }
         
@@ -198,9 +200,14 @@ namespace TestMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateBusket(Busket obj)
         {
+            Console.WriteLine(obj.Products.Count);
+            foreach (int id in obj.ProductId)
+            {
+                obj.Products.Add(_db.Products.Find(id));
+            }
             _db.Buskets.Add(obj);
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("CreateBusket");
         }
         
         // ------------------Order---------------------

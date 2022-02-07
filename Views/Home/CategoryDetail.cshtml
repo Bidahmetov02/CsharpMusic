@@ -1,0 +1,26 @@
+@model IEnumerable<TestMVCApp.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="text-center">
+    <h1 class="display-4">C# Music</h1>
+    <h2>@ViewBag.Category.Title</h2>
+    <div class="container mt-3">
+        <div class="d-flex justify-content-between">
+            @foreach (Product p in Model)
+            {
+                <div class="card" style="width: 18rem;">
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">@p.Name</h5>
+                        <p class="card-text">@p.Description</p>
+                        <h4>$ @p.Price</h4>
+                        <a href="#" class="btn btn-primary">Add to card</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
