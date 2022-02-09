@@ -53,8 +53,9 @@ namespace TestMVCApp.Controllers
             Busket b = new Busket() { ProductId = new List<int>{id}, Products = new List<Product>{p}};
             _db.Buskets.Add(b);
             _db.SaveChanges();
-            var maxId = _db.Buskets.Max(b => b.Id);
-            return RedirectToAction("CategoryDetail", new {id = maxId});
+            
+            var categoryId = p.Id;
+            return RedirectToAction("CategoryDetail", new {id = categoryId});
         }
 
         public IActionResult Privacy()

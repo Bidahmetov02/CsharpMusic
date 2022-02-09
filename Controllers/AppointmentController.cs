@@ -19,16 +19,24 @@ namespace TestMVCApp.Controllers
             _db = db;
         }
         
-        
         // GET
-        public IActionResult Index()
+        public IActionResult Index(int? id)
         {
-            
-            //IEnumerable<Product> objlist = _db.Products.Include(x => x.Category).ToList();
-            
+            ViewBag.p = _db.Products.Find(id);
+            ViewBag.pId = id;
+            return View();
+        }
+
+        public IActionResult Thankyou()
+        {
             return View();
         }
         
-       
+        public IActionResult Buy(Customer obj)
+        {
+            _db.Customers.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Thankyou");
+        }
     }       
 }

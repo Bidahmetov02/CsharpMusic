@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TestMVCApp.Data;
@@ -106,11 +107,23 @@ namespace TestMVCApp.Controllers
         
         // ------------------Customer---------------------
         // GET
-        public IActionResult CreateCustomer()
+        //[Authorize]
+        public IActionResult Customer()
         {
             ViewBag.CustomerList = _db.Customers;
             return View();
         }
+        
+        //Customer Detail
+        public IActionResult CustomerDetail(int? id)
+        {
+            Customer c = _db.Customers.Find(id);
+            var BoughtProducts = _db.Products.Where(p => p.Id.ToString() == c.BoughtProdId).ToList();
+            ViewBag.product = BoughtProducts;
+
+            return View(c);
+        }
+        
         
         // POST
         [HttpPost]
