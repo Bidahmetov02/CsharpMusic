@@ -47,10 +47,14 @@ namespace TestMVCApp.Controllers
             return View(ProductList);
         }
 
-        public IActionResult AddToBusket(int? id)
+        public IActionResult AddToBusket(int id)
         {
-            
-            return RedirectToAction("CategoryDetail");
+            var p = _db.Products.Find(id);
+            Busket b = new Busket() { ProductId = new List<int>{id}, Products = new List<Product>{p}};
+            _db.Buskets.Add(b);
+            _db.SaveChanges();
+            var maxId = _db.Buskets.Max(b => b.Id);
+            return RedirectToAction("CategoryDetail", new {id = maxId});
         }
 
         public IActionResult Privacy()

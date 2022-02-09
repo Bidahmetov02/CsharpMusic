@@ -37,9 +37,6 @@ namespace TestMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateProductPost(Product obj)
         {
-            Console.WriteLine(obj.Name);
-            Console.WriteLine(obj.Price);
-            Console.WriteLine(obj.Description);
             _db.Products.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("CreateProduct");
