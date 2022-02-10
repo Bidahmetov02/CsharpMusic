@@ -11,8 +11,10 @@ namespace TestMVCApp.Models
         public string LastName { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
-        public List<Order> Orders { get; set; } = new List<Order>();
-        public int CardNumber { get; set; }
+        
+        public string PaymentMethod { get; set; }
+        [Required]
+        public string BoughtProdId { get; set; }
     }
 }
 

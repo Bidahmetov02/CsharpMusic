@@ -1,0 +1,38 @@
+@model TestMVCApp.Models.Customer
+
+@{
+    ViewData["Title"] = "Customer";
+}
+
+<h2>Customer @Model.Name</h2>
+
+<table class="table table-bordered table-striped mt-4">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Address</th>
+        <th>Email</th>  
+        <th>Payment Method</th>
+        <th>Bought Product</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>@Model.Id</td>
+        <td>@Model.Name</td>
+        <td>@Model.LastName</td>
+        <th>@Model.Address</th>
+        <th>@Model.Email</th>
+        <th>@Model.PaymentMethod</th>
+        <th>@foreach (var p in @ViewBag.product)
+            {
+                <span>@p.Name</span>
+            }</th>
+            @*<td>
+                <a asp-action="" asp-route-Id="@Model.Id" class="btn btn-danger">Details</a>
+            </td>*@
+        </tr>
+        </tbody>
+</table>

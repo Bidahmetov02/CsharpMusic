@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TestMVCApp.Data;
@@ -10,9 +11,10 @@ using TestMVCApp.Data;
 namespace TestMVCApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220207221506_BusketModelChanged")]
+    partial class BusketModelChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,9 +65,8 @@ namespace TestMVCApp.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("text");
 
-                    b.Property<string>("BoughtProdId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("CardNumber")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Email")
                         .HasColumnType("text");
@@ -74,9 +75,6 @@ namespace TestMVCApp.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PaymentMethod")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -149,7 +147,7 @@ namespace TestMVCApp.Migrations
             modelBuilder.Entity("TestMVCApp.Models.Order", b =>
                 {
                     b.HasOne("TestMVCApp.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -184,6 +182,11 @@ namespace TestMVCApp.Migrations
             modelBuilder.Entity("TestMVCApp.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("TestMVCApp.Models.Customer", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("TestMVCApp.Models.Order", b =>

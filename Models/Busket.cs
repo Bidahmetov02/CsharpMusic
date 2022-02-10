@@ -8,10 +8,10 @@ namespace TestMVCApp.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        /*[Required]
         public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        public Customer Customer { get; set; }*/
         public List<int> ProductId { get; set; } = new List<int>();
         public List<Product> Products { get; set; } = new List<Product>();
     }
-}
+} 

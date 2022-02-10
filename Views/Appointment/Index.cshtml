@@ -1,5 +1,45 @@
+@model TestMVCApp.Models.Customer
+
 @{
-    ViewData["Title"] = "MyIndex";
+    ViewData["Title"] = "Checkout Page";
 }
 
-<h1>Nothing Here :)</h1>
+<div class="container">
+  <div class="d-flex flex-column justify-content-center">
+    <div class="card mb-3" style="max-width: 740px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="https://via.placeholder.com/150" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">@ViewBag.p.Name</h5>
+              <p class="card-text">@ViewBag.p.Description</p>
+              <h4>$ @ViewBag.p.Price</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h1>Fill the Form.</h1>
+      <form class="mt-4" asp-action="Buy" method="post">
+        <label for="name">First Name</label>
+        <input asp-for="Name" type="text" id="name" class="form-control">
+        <label for="lastname">Last Name</label>
+        <input asp-for="LastName" type="text" id="lastname" class="form-control">
+        <label for="address">Address</label>
+        <input asp-for="Address" type="text" id="address" class="form-control">
+        <label for="email">Email</label>
+        <input asp-for="Email" type="email" id="email" class="form-control">
+        <label for="paymentmethod">Select Payment Method</label>
+        <select id="paymentmethod" asp-for="PaymentMethod" class="form-control">
+          <option value="PayPal">PayPal</option>
+          <option value="PayPal">Debit Card</option>
+          <option value="PayPal">Payoneer</option>
+        </select>
+        <input hidden asp-for="BoughtProdId" value="@ViewBag.pId">
+    
+        <button type="submit" class="btn btn-success mt-2 btn-lg btn-group-lg">BUY</button>
+      </form>
+  </div>
+  
+</div>
