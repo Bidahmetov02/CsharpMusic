@@ -47,17 +47,6 @@ namespace TestMVCApp.Controllers
             return View(ProductList);
         }
 
-        public IActionResult AddToBusket(int id)
-        {
-            var p = _db.Products.Find(id);
-            Busket b = new Busket() { ProductId = new List<int>{id}, Products = new List<Product>{p}};
-            _db.Buskets.Add(b);
-            _db.SaveChanges();
-            
-            var categoryId = p.Id;
-            return RedirectToAction("CategoryDetail", new {id = categoryId});
-        }
-
         public IActionResult Privacy()
         {
             return View();
