@@ -107,7 +107,6 @@ namespace TestMVCApp.Controllers
         
         // ------------------Customer---------------------
         // GET
-        //[Authorize]
         public IActionResult Customer()
         {
             ViewBag.CustomerList = _db.Customers;
@@ -123,8 +122,7 @@ namespace TestMVCApp.Controllers
 
             return View(c);
         }
-        
-        
+
         // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -148,8 +146,7 @@ namespace TestMVCApp.Controllers
                 return NotFound();
             }
 
-            //Console.WriteLine(obj.Title);
-            
+            ViewBag.product = _db.Products.Where(p => p.Id.ToString() == obj.BoughtProdId);
             return View(obj);
         }
         
@@ -164,7 +161,7 @@ namespace TestMVCApp.Controllers
 
             _db.Customers.Remove(obj);
             _db.SaveChanges();
-            return RedirectToAction("CreateCustomer");
+            return RedirectToAction("Customer");
         }
         
         // GET Update
@@ -179,7 +176,10 @@ namespace TestMVCApp.Controllers
             {
                 return NotFound();
             }
-            
+
+            var product = _db.Products.Where(x => x.Id.ToString() == obj.BoughtProdId).ToList()[0];
+            var category = _db.Categories.Where(x => x.Id == product.CategoryId).ToList()[0];
+            ViewBag.ProductList = _db.Products.Where(x => x.CategoryId == category.Id).ToList();
             return View(obj);
         }
         
@@ -190,7 +190,7 @@ namespace TestMVCApp.Controllers
         {
             _db.Customers.Update(obj);
             _db.SaveChanges();
-            return RedirectToAction("CreateCustomer");
+            return RedirectToAction("Customer");
         }
 
         // ------------------Category---------------------

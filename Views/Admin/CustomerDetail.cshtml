@@ -16,6 +16,7 @@
         <th>Email</th>  
         <th>Payment Method</th>
         <th>Bought Product</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -23,16 +24,19 @@
         <td>@Model.Id</td>
         <td>@Model.Name</td>
         <td>@Model.LastName</td>
-        <th>@Model.Address</th>
-        <th>@Model.Email</th>
-        <th>@Model.PaymentMethod</th>
-        <th>@foreach (var p in @ViewBag.product)
+        <td>@Model.Address</td>
+        <td>@Model.Email</td>
+        <td>@Model.PaymentMethod</td>
+        <td>
+            @foreach (var p in @ViewBag.product)
             {
                 <span>@p.Name</span>
-            }</th>
-            @*<td>
-                <a asp-action="" asp-route-Id="@Model.Id" class="btn btn-danger">Details</a>
-            </td>*@
+            }
+        </td>
+        <td>
+            <a asp-action="DeleteCustomer" asp-route-Id="@Model.Id" class="btn btn-danger">Delete</a>
+            <a asp-action="UpdateCustomer" asp-route-Id="@Model.Id" class="btn btn-primary">Update</a>
+        </td>
         </tr>
-        </tbody>
+    </tbody>
 </table>
