@@ -6,10 +6,10 @@
 
 <div class="container">
   <div class="d-flex flex-column justify-content-center">
-    <div class="card mb-3" style="max-width: 740px;">
+    <div class="card mb-3" style="max-width: 740px; margin: 0 auto">
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="https://via.placeholder.com/150" class="img-fluid rounded-start" alt="...">
+            <img src="@ViewBag.p.ImgName" class="img-fluid rounded-start" alt="...">
           </div>
           <div class="col-md-8">
             <div class="card-body">
@@ -38,7 +38,7 @@
         </select>
         <input hidden asp-for="BoughtProdId" value="@ViewBag.pId">
     
-        <button type="submit" class="btn btn-success mt-2 btn-lg btn-group-lg">BUY</button>
+        <button type="submit" class="btn btn-success mt-2 btn-lg btn-group-lg">$@ViewBag.p.Price BUY</button>
       </form>
   </div>
   

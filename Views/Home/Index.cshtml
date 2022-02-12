@@ -6,16 +6,15 @@
 
 <div class="text-center">
     <h1 class="display-4">Online Musical Store</h1>
-    <h2>Here are the main categories of musical instruments</h2>
+    <h2>Main categories of musical instruments</h2>
     <div class="container mt-5">
         <div class="d-flex justify-content-between">
             @foreach (Category c in Model)
             {
                 <div class="card" style="width: 18rem;">
-                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
+                    <img src="@c.ImgName" class="card-img-top" alt="Product Image">
                     <div class="card-body">
                         <h5 class="card-title">@c.Title</h5>
-                        <p class="card-text"></p>
                         <h4>@c.Products.Count Products</h4>
                         <a asp-action="CategoryDetail" asp-route-Id="@c.Id" class="btn btn-primary">See the Products</a>
                     </div>

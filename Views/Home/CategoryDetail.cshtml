@@ -12,7 +12,7 @@
             @foreach (Product p in Model)
             {
                 <div class="card" style="width: 18rem;">
-                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Product Image">
+                    <img src="@p.ImgName" class="card-img-top" alt="Product Image">
                     <div class="card-body">
                         <h5 class="card-title">@p.Name</h5>
                         <p class="card-text">@p.Description</p>

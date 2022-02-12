@@ -21,6 +21,9 @@
     <label for="category">Category</label>
     <input disabled value="@ViewBag.Category" type="text" id="category" class="form-control">
     
+    <label for="image">Product Image URL</label>
+    <input disabled type="text" asp-for="ImgName" id="image" alt="" class="form-control">
+    
     <button type="submit" class="btn btn-danger mt-2 w-25">Delete</button>
     <button asp-action="CreateProduct" class="btn btn-success mt-2 w-25">Back</button>
     

@@ -10,8 +10,8 @@
     <input hidden asp-for="Id">
     <label for="title">Category Title</label>
     <input asp-for="Title" type="text" id="title" class="form-control">
-    <label for="image">Category Image (not implemented yet)</label>
-    <input disabled type="image" asp-for="ImgName" id="image" alt="" class="form-control">
+    <label for="image">Category Image URL</label>
+    <input type="text" asp-for="ImgName" id="image" alt="" class="form-control">
 
     <button type="submit" class="btn btn-success mt-2 w-25">Update</button>
     <button asp-action="CreateCategory" class="btn btn-success mt-2 w-25">Back</button>
