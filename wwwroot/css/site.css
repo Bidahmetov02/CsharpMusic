@@ -85,7 +85,16 @@ body {
   background-color: #d83f87;
 }
 
+.back {
+  position: absolute;
+  z-index: 2;
+  left: 220px;
+  top: 120px;
+}
 
+.btn img {
+  width: 25px !important;
+}
 
 .card-body {
   display: flex;

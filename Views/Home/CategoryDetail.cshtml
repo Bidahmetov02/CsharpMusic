@@ -7,6 +7,7 @@
 <div class="text-center">
     <h1 class="display-4">Online Musical Store</h1>
     <h2>@ViewBag.Category.Title</h2>
+    <a asp-controller="Home" asp-action="Index"><button type="button" class="btn btn-primary btn-lg back"><img src="https://img.icons8.com/office/16/000000/circled-left-2.png"/>  Go Back</button></a>
     <div class="container mt-3">
         <div class="d-flex justify-content-between">
             @foreach (Product p in Model)
